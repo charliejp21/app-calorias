@@ -17,9 +17,16 @@ export type ActivityState = {
     activeId: Activity['id']
 }
 
+const localStorageActivities = () : Activity[] => { //TypeScript no puede inferir y le decirmos que sera el tipo de dato
+
+    const activities = localStorage.getItem('activities')
+
+    return activities ? JSON.parse('activities') : []
+}
+
 export const initialState : ActivityState = {
 
-    activities: [],
+    activities: localStorageActivities(),
     activeId: ''
 
 }
